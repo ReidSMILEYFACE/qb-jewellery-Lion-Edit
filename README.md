@@ -1,6 +1,10 @@
 # qb-jewellery-Lion-Edit
 this is a edited version of https://github.com/Lionh34rt/-QB-Jewellery
 
+Showcase 
+
+https://www.youtube.com/watch?v=o7fow_sdx9g
+
 MADE FOR QBCORE ONLY!
 
 Edit Made By NotRandz [https://discord.gg/JAGcF9XmcS]

@@ -5,6 +5,9 @@ Edit Made By NotRandz [https://discord.gg/JAGcF9XmcS]
 Original Creator [https://github.com/Lionh34rt/-QB-Jewellery] i just made a edit of it making
 it look like a Framework called BJCore
 
+Install
+Drag and drop the 2 files in the doorlocks folder into qb-doorlock/configs and then your set 
+
 Required for the script!
 
 qb-target [Comes with basic qb]

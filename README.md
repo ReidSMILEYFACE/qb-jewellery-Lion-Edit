@@ -9,8 +9,11 @@ MADE FOR QBCORE ONLY!
 
 Edit Made By NotRandz [https://discord.gg/JAGcF9XmcS]
 
-Original Creator [https://github.com/Lionh34rt/-QB-Jewellery] i just made a edit of it making
-it look like a Framework called BJCore
+Original Creator [https://github.com/Lionh34rt/-QB-Jewellery] i made this edit because i was inpsired
+by a framework called BJCore.
+
+Install
+Drag and drop the 2 files in the doorlocks folder into qb-doorlock/configs and then your set 
 
 Required for the script!
 

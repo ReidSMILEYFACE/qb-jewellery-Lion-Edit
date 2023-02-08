@@ -201,7 +201,7 @@ RegisterNetEvent('qb-jewellery:client:doorunlock', function()
 end)
 
 RegisterNetEvent('qb-jewellery:client:Thermite', function()
-    QBCore.Functions.TriggerCallback('QBCore:HasItem', function(result)
+    local result = QBCore.Functions.HasItem('thermite')
         if result then 
             if math.random(1, 100) <= 85 and not IsWearingHandshoes() then
                 TriggerServerEvent("evidence:server:CreateFingerDrop", GetEntityCoords(PlayerPedId()))
@@ -223,7 +223,6 @@ RegisterNetEvent('qb-jewellery:client:Thermite', function()
         else
             QBCore.Functions.Notify("You are missing something..", "error", 2500)
         end
-    end, {"thermite", "lighter"})
 end)
 
 RegisterNetEvent('qb-jewellery:client:ThermitePtfx', function()

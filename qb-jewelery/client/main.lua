@@ -1,6 +1,7 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local firstAlarm = false
 local smashing = false
+local safecracked = false
 
 -- Functions
 local function DrawText3Ds(x, y, z, text)
@@ -17,6 +18,10 @@ local function DrawText3Ds(x, y, z, text)
     DrawRect(0.0, 0.0+0.0125, 0.017+ factor, 0.03, 0, 0, 0, 75)
     ClearDrawOrigin()
 end
+
+AddEventHandler('onResourceStop', function(resource) if resource ~= GetCurrentResourceName() then return end
+DeleteEntity(Safe)
+end)
 
 local function loadParticle()
 	if not HasNamedPtfxAssetLoaded("scr_jewelheist") then RequestNamedPtfxAsset("scr_jewelheist") end
@@ -308,5 +313,41 @@ CreateThread(function()
         distance = 1.5,
     })
     exports['qb-target']:AddCircleZone("Vange", vector3(-629.4028, -230.4196, 38.5506), 0.5,{ name = "vangedoor2", debugPoly = false, useZ=true, }, { options = { { type = "client", event = "qb-jewellery:client:door2", icon = "	fa fa-laptop", label = "Crack Code"}, }, distance = 1 })
+    exports['qb-target']:AddCircleZone("Safe", vector3(-630.7402, -228.3227, 38.2705), 0.5,{ name = "Safe", debugPoly = false, useZ=true, }, { options = { { type = "client", event = "qb-jewelery:client:CrackSafe", icon = "fa fa-laptop", label = "Crack Safe"}, }, distance = 1 })
     exports['qb-target']:AddCircleZone("Vange2", vector3(-631.0305, -230.6305, 38.005), 0.5,{ name = "vangedoor3", debugPoly = false, useZ=true, }, { options = { { type = "client", event = "qb-jewellery:client:doorunlock", icon = "	fa fa-laptop", label = "Unlock Doors"}, }, distance = 1 })
+end)
+
+-- Safe Edit --
+RegisterNetEvent('qb-jewelery:client:CrackSafe', function()
+    local timehack = math.random(20, 60)
+    local amount = math.random(4, 9)
+    local ped = PlayerPedId()
+    local stetha = QBCore.Functions.HasItem('stethascope')
+    if stetha then
+    if not safecracked then
+    loadAnimDict("mini@safe_cracking")
+    TaskPlayAnim(PlayerPedId(), "mini@safe_cracking", "dial_turn_anti_fast_1", 3.0, 3.0, -1, 49, 0, 0, 0, 0)
+    SetEntityHeading(ped, Safe)
+    exports['boii-chiphack']:StartGame(function(success)
+        if success then
+            safecracked = true
+            TriggerServerEvent('qb-jewellery:server:Safe')
+            ClearPedTasksImmediately(PlayerPedId())
+        else
+           QBCore.Functions.Notify('Failed!', 'error', 6000)
+           ClearPedTasksImmediately(PlayerPedId())
+        end
+    end, amount, timehack) -- Made it random
+else
+    QBCore.Functions.Notify('Safe Already Hacked!', 'error', 6000)
+end
+else
+    QBCore.Functions.Notify('No Stethascope!', 'error', 500)
+end
+end)
+
+CreateThread(function()
+    local Safe = CreateObject(GetHashKey("p_v_43_safe_s"), -631.02, -227.98, 37.06570, true,  true, true)
+    FreezeEntityPosition(Safe, true)
+    SetEntityHeading(Safe, 38.19)
 end)

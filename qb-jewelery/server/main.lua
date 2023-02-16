@@ -47,6 +47,33 @@ RegisterNetEvent('qb-jewellery:server:vitrineReward', function()
     end
 end)
 
+RegisterNetEvent('qb-jewellery:server:Safe', function()
+    local chance = math.random(1, 5)
+    local Player = QBCore.Functions.GetPlayer(source)
+    if chance == 1 then
+        QBCore.Functions.Notify('You Found Nothing!', 'error', 7500)
+    elseif chance == 2 then
+        QBCore.Functions.Notify('You Found a Pistol!', 'success', 7500)
+        Player.Functions.AddItem('weapon_pistol', 1)
+        TriggerClientEvent("inventory:client:ItemBox", source, QBCore.Shared.Items["weapon_pistol"], "add")
+    elseif chance == 3 then
+        QBCore.Functions.Notify('You Found Some Goods', 'success', 7500)
+        Player.Functions.AddItem('specialrolex', 1)
+        TriggerClientEvent("inventory:client:ItemBox", source, QBCore.Shared.Items["specialrolex"], "add")
+        Player.Functions.AddItem('blueusb', 1)
+        TriggerClientEvent("inventory:client:ItemBox", source, QBCore.Shared.Items["blueusb"], "add")
+    elseif chance == 4 then
+        QBCore.Functions.Notify('You Found Cash!', 'success', 7500)
+        Player.Functions.AddMoney('cash', 1500)
+    elseif chance == 5 then
+        QBCore.Functions.Notify('You Found Some Counterfiet Money!', 'success', 7500)
+        Player.Functions.AddItem('markedbills', 35)
+        TriggerClientEvent("inventory:client:ItemBox", source, QBCore.Shared.Items["markedbills"], "add")
+    end
+    Player.Functions.RemoveItem('stethascope', 1)
+    TriggerClientEvent("inventory:client:ItemBox", source, QBCore.Shared.Items["stethascope"], "remove")
+end)
+
 RegisterNetEvent('qb-jewellery:server:thermiteremove', function()
     local Player = QBCore.Functions.GetPlayer(source)
     Player.Functions.RemoveItem('thermite', 1)

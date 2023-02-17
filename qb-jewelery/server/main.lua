@@ -58,8 +58,8 @@ RegisterNetEvent('qb-jewellery:server:Safe', function()
         TriggerClientEvent("inventory:client:ItemBox", source, QBCore.Shared.Items["weapon_pistol"], "add")
     elseif chance == 3 then
         QBCore.Functions.Notify('You Found Some Goods', 'success', 7500)
-        Player.Functions.AddItem('specialrolex', 1)
-        TriggerClientEvent("inventory:client:ItemBox", source, QBCore.Shared.Items["specialrolex"], "add")
+        Player.Functions.AddItem('specialwatch', 1)
+        TriggerClientEvent("inventory:client:ItemBox", source, QBCore.Shared.Items["specialwatch"], "add")
         Player.Functions.AddItem('blueusb', 1)
         TriggerClientEvent("inventory:client:ItemBox", source, QBCore.Shared.Items["blueusb"], "add")
     elseif chance == 4 then
